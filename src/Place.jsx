@@ -1,9 +1,7 @@
-
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { data } from './data';
-
-
+import './Place.css';
 
 export const Place = () => {
   const { country, continent } = useParams();
@@ -11,36 +9,46 @@ export const Place = () => {
 
   useEffect(() => {
     const filteredPlaces = data.continents
-        .filter((item) => {
-            return item.name === continent;
-        })[0].countries
-        .filter((item) => {
-            return item.name === country;
-        })[0].places;
-        
+      .find((continentObj) => continentObj.name === continent)
+      .countries.find((countryObj) => countryObj.name === country)
+      .destinations;
 
     setPlaces(filteredPlaces);
   }, [country, continent]);
 
   return (
     <div className="App">
-      <div className="country">
-        {places.map((item) => (
-          <div key={item.id} className="country">
-            <div>{item.name}</div>
-            <div>{item.description}</div>
-            <img src={item.image} height={'150'} width={'150'} />
-            <div>{item.ratings}</div>
-            <div>{item.reviews}</div>
-            <div>{item.location}</div>
-            <div>{item.openingHours}</div>
-            <div>{item.ticketPrice}</div>
-            <div>{item.website}</div>
-
+      {places.map((item) => (
+        <div key={item.id} className="country">
+          <img src={item.image} height={'150'} width={'150'} />
+          <div className="details">
+            <h2>{item.name}</h2>
+            <p>{item.description}</p>
+            <div className="info">
+              <div className="rating">
+                <span>Rating:</span> {item.ratings}
+              </div>
+              <div className="reviews">
+                <span>Reviews:</span> {item.reviews}
+              </div>
+              <div className="location">
+                <span>Location:</span> {item.location}
+              </div>
+              <div className="opening-hours">
+                <span>Opening Hours:</span> {item.openingHours}
+              </div>
+              <div className="ticket-price">
+                <span>Ticket Price:</span> {item.ticketPrice}
+              </div>
+              <div className="website">
+                <span>Website:</span> <a href={item.website}>{item.website}</a>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
+
 

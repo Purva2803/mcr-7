@@ -1,0 +1,50 @@
+.country {
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+
+  }
+  
+  .country img {
+    height: 150px;
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+
+
+  }
+  
+  .details h2 {
+    margin-bottom: 5px;
+  }
+  
+  .details p {
+    margin-bottom: 100px;
+  }
+  
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .info > div {
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .info span {
+    font-weight: bold;
+  }
+  
+  .info a {
+    color: blue;
+    text-decoration: underline;
+  }
+  
